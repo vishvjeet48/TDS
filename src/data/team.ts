@@ -6,7 +6,7 @@ const photo = (seed: string) =>
 export const leadDesigners: TeamMember[] = [
   {
     id: 'ananya-sharma',
-    name: 'Yogita Oswal',
+    name: 'Gaurav Oswal',
     role: 'Principal Interior Designer',
     department: 'Design',
     image: photo('1573496359142-b8d87734a5a2'),
@@ -19,7 +19,7 @@ export const leadDesigners: TeamMember[] = [
   },
   {
     id: 'rohan-mehta',
-    name: 'Gaurav Oswal',
+    name: 'Yogita Oswal',
     role: 'Creative Director',
     department: 'Design',
     image: photo('1560250097-0b93528c311a'),

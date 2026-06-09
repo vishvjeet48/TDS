@@ -20,12 +20,18 @@ function SplitText({ text, className, style, baseDelay = 0, stagger = 0.032 }: {
   baseDelay?: number
   stagger?: number
 }) {
+  const isGradientText = style?.WebkitTextFillColor === 'transparent'
+
   return (
     <span className={className} style={{ ...style, display: 'block' }}>
       {text.split('').map((char, i) => (
         <motion.span
           key={i}
-          style={{ display: 'inline-block', willChange: 'transform' }}
+          style={{
+            display: 'inline-block',
+            willChange: 'transform',
+            ...(isGradientText ? style : {}),
+          }}
           initial={{ y: '110%', opacity: 0, rotateX: 40 }}
           animate={{ y: '0%', opacity: 1, rotateX: 0 }}
           transition={{
@@ -161,6 +167,8 @@ export function HeroSection() {
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
+                  backgroundRepeat: 'no-repeat',
+                  color: '#EAC97E',
                 }}
                 baseDelay={0.12}
                 stagger={0.028}

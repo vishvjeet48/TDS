@@ -8,7 +8,7 @@ export function LeadDesignersSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden bg-primary px-10 py-20 dark:bg-[#0a0a0a]"
+      className="relative min-h-screen overflow-hidden bg-primary px-6 py-16 dark:bg-[#0a0a0a] md:px-10 md:py-20"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Ambient glow */}
@@ -33,7 +33,7 @@ export function LeadDesignersSection() {
         Lead Designers
       </p>
       <h2
-        className="mb-16 text-center text-[52px] font-light leading-[1.1] tracking-[-0.01em] text-charcoal dark:text-[#f0ebe3]"
+        className="mb-10 text-center text-[36px] font-light leading-[1.1] tracking-[-0.01em] text-charcoal dark:text-[#f0ebe3] md:mb-16 md:text-[52px]"
         style={{ fontFamily: "'Cormorant Garamond', serif" }}
       >
         The Visionaries Behind
@@ -42,7 +42,7 @@ export function LeadDesignersSection() {
       </h2>
 
       {/* Grid */}
-      <div className="mx-auto grid max-w-[900px] grid-cols-2 gap-[2px]">
+      <div className="mx-auto grid max-w-[900px] grid-cols-1 gap-[2px] sm:grid-cols-2">
         {leadDesigners.map((designer, i) => (
           <DesignerCard key={designer.id} designer={designer} index={i} />
         ))}
@@ -96,7 +96,7 @@ function DesignerCard({ designer, index }: { designer: (typeof leadDesigners)[0]
           className="pointer-events-none absolute inset-0 flex select-none items-center justify-center opacity-[0.06] transition-opacity duration-500 group-hover:opacity-[0.1] dark:opacity-[0.06]"
           style={{
             fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: 180,
+            fontSize: 'clamp(100px, 20vw, 180px)',
             color: '#2c2c2c',
             letterSpacing: '-0.05em',
           }}
@@ -134,13 +134,13 @@ function DesignerCard({ designer, index }: { designer: (typeof leadDesigners)[0]
         />
 
         <div
-          className="absolute right-7 top-7 text-[13px] tracking-[0.2em] text-charcoal/30 transition-colors duration-400 group-hover:text-brown/70 dark:text-[#8a756050] dark:group-hover:text-[#c9a97a90]"
+          className="absolute right-5 top-5 text-[13px] tracking-[0.2em] text-charcoal/30 transition-colors duration-400 group-hover:text-brown/70 dark:text-[#8a756050] dark:group-hover:text-[#c9a97a90] md:right-7 md:top-7"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
           {String(index + 1).padStart(2, '0')}
         </div>
 
-        <div className="absolute left-7 top-7 flex -translate-y-2 items-center gap-1.5 opacity-0 transition-all delay-100 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="absolute left-5 top-5 flex -translate-y-2 items-center gap-1.5 opacity-0 transition-all delay-100 duration-500 group-hover:translate-y-0 group-hover:opacity-100 md:left-7 md:top-7">
           <div className="h-1.5 w-1.5 rounded-full bg-brown dark:bg-[#c9a97a]" />
           <span className="text-[10px] uppercase tracking-[0.25em] text-brown dark:text-[#c9a97a]">
             {designer.experience} experience
@@ -159,12 +159,12 @@ function DesignerCard({ designer, index }: { designer: (typeof leadDesigners)[0]
           />
         ))}
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-0">
+        <div className="absolute bottom-0 left-0 right-0 px-5 pb-0 md:px-8">
           <p className="mb-2 translate-y-1 text-[9px] uppercase tracking-[0.3em] text-brown/70 transition-all duration-400 group-hover:translate-y-0 group-hover:text-brown dark:text-[#8a7560] dark:group-hover:text-[#c9a97a]">
             {designer.role}
           </p>
           <h3
-            className="text-[48px] leading-[0.95] tracking-[0.03em] text-charcoal transition-all duration-500 group-hover:tracking-[0.05em] dark:text-[#f0ebe3]"
+            className="text-[clamp(32px,8vw,48px)] leading-[0.95] tracking-[0.03em] text-charcoal transition-all duration-500 group-hover:tracking-[0.05em] dark:text-[#f0ebe3]"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             {designer.name.split(' ').map((word, wi) => (
@@ -178,13 +178,13 @@ function DesignerCard({ designer, index }: { designer: (typeof leadDesigners)[0]
       </div>
 
       {/* Info panel */}
-      <div className="relative overflow-hidden border-t border-charcoal/[0.06] bg-cream/80 px-8 py-6 dark:border-white/[0.04] dark:bg-[#0f0f0f]">
+      <div className="relative overflow-hidden border-t border-charcoal/[0.06] bg-cream/80 px-5 py-5 dark:border-white/[0.04] dark:bg-[#0f0f0f] md:px-8 md:py-6">
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           style={{ background: 'linear-gradient(135deg, rgba(201,169,122,0.08) 0%, transparent 60%)' }}
         />
         <p
-          className="mb-4 text-[15px] italic leading-[1.7] text-charcoal/70 transition-colors duration-400 group-hover:text-charcoal dark:text-[#9e9489] dark:group-hover:text-[#c9b89a]"
+          className="mb-4 text-[14px] italic leading-[1.7] text-charcoal/70 transition-colors duration-400 group-hover:text-charcoal dark:text-[#9e9489] dark:group-hover:text-[#c9b89a] md:text-[15px]"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           &ldquo;{designer.philosophy}&rdquo;

@@ -120,6 +120,7 @@ function ClayCard({ svc, delay, theme }: { svc: ServiceCard; delay: number; them
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className={svc.span === 'wide' ? 'card-wide' : ''}
       style={{
         background: cardBg,
         borderRadius: '20px',
@@ -127,7 +128,6 @@ function ClayCard({ svc, delay, theme }: { svc: ServiceCard; delay: number; them
         boxShadow: shadow,
         transform: lift ? 'translateY(-5px)' : 'translateY(0)',
         transition: 'transform .22s cubic-bezier(.34,1.4,.64,1), box-shadow .22s ease, background .18s ease',
-        gridColumn: svc.span === 'wide' ? 'span 2' : 'span 1',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -177,7 +177,7 @@ function ClayCard({ svc, delay, theme }: { svc: ServiceCard; delay: number; them
             }}>{svc.title}</h3>
             <p style={{ fontSize: 13, color: isLight ? 'rgba(44,44,44,.72)' : 'rgba(245,240,232,.55)', lineHeight: 1.72 }}>{svc.description}</p>
             {svc.stats && (
-              <div style={{ display: 'flex', gap: 32, marginTop: 20 }}>
+              <div style={{ display: 'flex', gap: 32, marginTop: 20, flexWrap: 'wrap' }}>
                 {svc.stats.map(s => (
                   <div key={s.label}>
                     <div style={{
@@ -236,7 +236,34 @@ export function ServicesSection() {
 
   return (
     <section className="section-padding" style={{ background: sectionBg, position: 'relative', overflow: 'hidden' }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');`}</style>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+        .card-wide {
+          grid-column: span 2;
+        }
+        @media (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .card-wide {
+            grid-column: span 2;
+          }
+        }
+        @media (max-width: 640px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+          .card-wide {
+            grid-column: span 1;
+          }
+        }
+      `}</style>
 
       {/* Background radial glow */}
       <div style={{
@@ -276,7 +303,7 @@ export function ServicesSection() {
         </div>
 
         {/* Bento grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+        <div className="services-grid">
           {services.map((svc, i) => (
             <ClayCard key={svc.id} svc={svc} delay={i * 0.06} theme={theme} />
           ))}
